@@ -2,7 +2,8 @@
 desafios entre desenvolvedor do cybermakers de 100 dias de codigo
 - requisitos a serem seguidos
 - backend
-    - Linguagem Java - spring 
+    - Linguagem Java 
+        - framework : spring
     - banco de dados PostgreSQL
     - arquitetura de projeto 
         - WEB
