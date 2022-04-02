@@ -20,4 +20,4 @@ desafios entre desenvolvedor do cybermakers de 100 dias de codigo
 - jogos de cartas
     - em turnos
     - modelo em RPG
-- ....
+- novo modelo teste
