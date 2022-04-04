@@ -9,13 +9,13 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     @Column(name= "username")
-    String username;
+    private String username;
     @Column(name= "password")
     String password;
     @Column(name = "logginstatus")
-    boolean logginIn;
+    private boolean logginIn;
 
     public int getId() {
         return id;

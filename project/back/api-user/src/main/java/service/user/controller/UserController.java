@@ -1,13 +1,11 @@
 package service.user.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import service.user.model.UserModel;
 import service.user.repository.UserRepository;
 import service.user.user.Status;
@@ -17,23 +15,18 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @CrossOrigin(origins = "*")
-@Controller
+@RestController
 @RequestMapping("user")
 public class UserController {
-
+    @Autowired
     UserRepository userRepository;
 
-    public UserController(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
-
     @PostMapping("/cadastrar")
-    public Object cadastraUsuario(@Valid @RequestBody UserModel param){
+    public Status cadastraUsuario(@Valid @RequestBody UserModel param){
         try{
             List<UserModel> listUser = userRepository.findAll();
             System.out.println("novo usuario" + param.toString());
                 for(UserModel user : listUser){
-                    System.out.println("usuario regristado" + param.toString());
                     if(user.equals(param)) {
                         return Status.USER_ALREADY_EXISTS;
                     }
@@ -41,8 +34,12 @@ public class UserController {
             userRepository.save(param);
                 return Status.SUCCESS;
         }catch (NoSuchElementException e) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return Status.FAILURE;
         }
+    }
+    @GetMapping
+    public String teste(){
+        return "ok";
     }
 
 }
